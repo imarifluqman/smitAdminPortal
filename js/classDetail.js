@@ -81,36 +81,50 @@ let stdCourse = document.querySelector("#stdCourse");
 let stdImage = document.querySelector("#stdImage");
 
 async function stdData() {
-  let file = stdImage.files[0];
-  let imageRef = ref(storage, `images/${file.name}`);
-  try {
-    let uploaded = await uploadBytes(imageRef, file);
-    let url = await getDownloadURL(imageRef);
+  if (
+    stdName.value == "" ||
+    stdFname.value == "" ||
+    stdroll.value == "" ||
+    stdContact.value == "" ||
+    stdCnic.value == "" ||
+    stdCourse.value == "" ||
+    stdImage.value == ""
+  ) {
+    alert("Please fill all field");
+  } else {
+    let file = stdImage.files[0];
+    let imageRef = ref(storage, `images/${file.name}`);
+    try {
+      let uploaded = await uploadBytes(imageRef, file);
+      let url = await getDownloadURL(imageRef);
 
-    const docRef = await addDoc(collection(db, "studentDetails"), {
-      name: stdName.value,
-      fatherName: stdFname.value,
-      rollNumber: stdroll.value,
-      contactNumber: stdContact.value,
-      cnicNumber: stdCnic.value,
-      course: stdCourse.value,
-      image: url,
-      date: Timestamp.fromDate(new Date()),
-    });
-    console.log("Document written with ID: ", docRef.id);
-    document.querySelector("#saveMsg2").innerHTML = "updated Data";
-  } catch (e) {
-    console.error("Error adding document: ", e);
-    document.querySelector("#saveMsg2").innerHTML = e;
+      const docRef = await addDoc(collection(db, "studentDetails"), {
+        name: stdName.value,
+        fatherName: stdFname.value,
+        rollNumber: stdroll.value,
+        contactNumber: stdContact.value,
+        cnicNumber: stdCnic.value,
+        course: stdCourse.value,
+        image: url,
+        date: Timestamp.fromDate(new Date()),
+      });
+      console.log("Document written with ID: ", docRef.id);
+      document.querySelector("#saveMsg2").innerHTML = "updated Data";
+    } catch (e) {
+      console.error("Error adding document: ", e);
+      document.querySelector("#saveMsg2").innerHTML = e;
+    }
+
+    stdName.value = "";
+    stdFname.value = "";
+    stdroll.value = "";
+    stdContact.value = "";
+    stdCnic.value = "";
+    stdCourse.value = "";
+    stdImage.value = "";
   }
 
-  stdName.value = "";
-  stdFname.value = "";
-  stdroll.value = "";
-  stdContact.value = "";
-  stdCnic.value = "";
-  stdCourse.value = "";
-  stdImage.value = "";
+  setTimeout((document.querySelector("#saveMsg2").innerHTML = ""), 2000);
 }
 
 stdDataSave.addEventListener("click", stdData);
@@ -121,7 +135,7 @@ let searchBtn = document.querySelector("#searchBtn");
 async function getStdData() {
   const q = query(
     collection(db, "studentDetails"),
-    where("cnicNumber", "==", searchData.value)  
+    where("cnicNumber", "==", searchData.value)
   );
   await onSnapshot(q, (querySnapshot) => {
     querySnapshot.forEach((doc) => {
@@ -170,9 +184,3 @@ async function getStdData() {
 }
 
 searchBtn.addEventListener("click", getStdData);
-
-function editfun(arr) {
-  console.log(arr);
-}
-
-window.editfun = editfun;
