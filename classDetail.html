@@ -8,17 +8,19 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="./js/firbaseConfig.js" type="module"></script>
 
     <title>SMIT Admin Portal</title>
     <link rel="stylesheet" href="./css/classDetail.css">
 </head>
 
 <body>
-    <nav class="navbar navbar-light bg-light">
+    <nav class="navbar navbar-light bg-light sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand">SMIT</a>
             <form class="d-flex">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success " type="button" id="searchBtn">Search</button>
                 <button class="btn btn-outline-success" type="button" id="logoutBtn">LogOut</button>
             </form>
         </div>
@@ -26,12 +28,13 @@
 
 
     <section>
-        <form>
+        <form class="row">
             <div class="mb-3">
-                <h2 class="form-label"> Class Details</h2>
+                <h2 class="form-label"> Add Class Details</h2>
             </div>
-            <div class="mb-3">
-                <label for="classTime" class="form-label">Teacher's Name</label>
+
+            <div class="mb-3 col-sm-5 col-md-6">
+                <label for="classTime" class="form-label">Select Time</label>
                 <select class="form-select" id="classTime" aria-label="Default select example">
                     <option selected>select Class Time</option>
                     <option value="morning">Morning</option>
@@ -39,7 +42,7 @@
                     <option value="evening">Evening</option>
                 </select>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 col-sm-5 col-md-6">
                 <label for="scheduleOfClass" class="form-label">Schedule of class</label>
                 <select class="form-select" id="scheduleOfClass" aria-label="Default select example">
                     <option selected>Schedule of class</option>
@@ -48,7 +51,7 @@
                     <option value="sunday">Sunday</option>
                 </select>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 col-sm-5 col-md-6">
                 <label for="teacherName" class="form-label">Teacher's Name</label>
                 <select class="form-select" id="teacherName" aria-label="Default select example">
                     <option selected>select Teacher Name</option>
@@ -57,7 +60,7 @@
                     <option value="inzamamMalik">Sir Inzamam Malik</option>
                 </select>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 col-sm-5 col-md-6">
                 <label for="sectionName" class="form-label">Section Name</label>
                 <select class="form-select" id="sectionName" aria-label="Default select example">
                     <option selected>select Section</option>
@@ -66,7 +69,7 @@
                     <option value="evening">C (4pm to 6pm)</option>
                 </select>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 col-sm-5 col-md-6">
                 <label for="courseName" class="form-label">Course Name</label>
                 <select class="form-select" id="courseName" aria-label="Default select example">
                     <option selected>select Course</option>
@@ -75,7 +78,7 @@
                     <option value="cco">CCo</option>
                 </select>
             </div>
-            <div class="mb-3">
+            <div class="mb-3 col-sm-5 col-md-6">
                 <label for="batch" class="form-label">Batch Number</label>
                 <select class="form-select" id="batch" aria-label="Default select example">
                     <option selected>select Batch</option>
@@ -83,19 +86,86 @@
                     <option value="10">10</option>
                 </select>
             </div>
-            <button type="button" class="btn btn-primary">Submit</button>
+            <div class="mt-3 col-sm-12 col-md-12 d-flex justify-content-center">
+                <button type="button" class="btn btn-primary" id="classDataSave">Submit</button>
+            </div>
         </form>
     </section>
 
 
+    <!-- ============================== detail of students======================= -->
+
+    <section>
+        <form class="row">
+            <div class="mb-3">
+                <h2 class="form-label"> Add Student Details</h2>
+            </div>
+
+            <div class="mb-3 col-sm-5 col-md-6">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="stdName" placeholder="Name">
+                    <label for="floatingInput">Name</label>
+                </div>
+            </div>
+            <div class="mb-3 col-sm-5 col-md-6">
+                <div class="form-floating mb-3">
+                    <input type="text" class="form-control" id="stdFname" placeholder="Father Name">
+                    <label for="floatingInput">Father Name</label>
+                </div>
+            </div>
+            <div class="mb-3 col-sm-5 col-md-6">
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="stdroll" placeholder="Roll number">
+                    <label for="floatingInput">Roll Number</label>
+                </div>
+            </div>
+
+            <div class="mb-3 col-sm-5 col-md-6">
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="stdContact" placeholder="Contact number">
+                    <label for="floatingInput">Contact Number</label>
+                </div>
+            </div>
+            <div class="mb-3 col-sm-5 col-md-6">
+                <div class="form-floating mb-3">
+                    <input type="number" class="form-control" id="stdCnic" placeholder="CNIC number">
+                    <label for="floatingInput">CNIC Number</label>
+                </div>
+            </div>
+            <div class="form-floating mb-3 col-sm-5 col-md-6">
+                <select class="form-select" id="stdCourse" aria-label="Floating label select example">
+                    <option selected>select Course</option>
+                    <option value="webAndApp">Web and App Development</option>
+                    <option value="graphicDesign">Graphic Design</option>
+                    <option value="cco">CCo</option>
+                </select>
+                <label for="floatingSelect">Course Name</label>
+            </div>
+            <div class="col-sm-5 col-md-6 mb-3">
+                <label for="formFileLg" class="form-label">Picture</label>
+                <input class="form-control form-control-lg" id="stdImage" type="file">
+            </div>
+            <div class="form-floating mb-3 col-sm-5 col-md-6">
+                <select class="form-select" id="teacherAssign" aria-label="Floating label select example">
+                    <option selected>select Teacher Name</option>
+                    <option value="haiderAli">Sir Haider Ali</option>
+                    <option value="ghouseAhmed">Sir Ghouse Ahmed</option>
+                    <option value="inzamamMalik">Sir Inzamam Malik</option>
+                </select>
+                <label for="floatingSelect">Teacher Assign</label>
+            </div>
 
 
+            <div class="mt-3 col-sm-12 col-md-12 d-flex justify-content-center">
+                <button type="button" class="btn btn-primary" id="stdDataSave">Submit</button>
+            </div>
+        </form>
+    </section>
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
-    <script src="./js/firbaseConfig.js" type="module"></script>
     <script src="./js/classDetail.js" type="module"></script>
 
 </body>
