@@ -6,6 +6,9 @@ import {
   addDoc,
   collection,
   Timestamp,
+  query,
+  where,
+  onSnapshot,
 } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-firestore.js";
 import {
   uploadBytes,
@@ -54,9 +57,17 @@ async function saveDataClass() {
       date: Timestamp.fromDate(new Date()),
     });
     console.log("Document written with ID: ", docRef.id);
+    document.querySelector("#saveMsg").innerHTML = "Updated Data";
   } catch (e) {
     console.error("Error adding document: ", e);
+    document.querySelector("#saveMsg").innerHTML = e;
   }
+  classTime.value = "";
+  scheduleOfClass.value = "";
+  teacherName.value = "";
+  sectionName.value = "";
+  courseName.value = "";
+  batch.value = "";
 }
 
 dataSave.addEventListener("click", saveDataClass);
@@ -87,9 +98,68 @@ async function stdData() {
       date: Timestamp.fromDate(new Date()),
     });
     console.log("Document written with ID: ", docRef.id);
+    document.querySelector("#saveMsg2").innerHTML = "updated Data";
   } catch (e) {
     console.error("Error adding document: ", e);
+    document.querySelector("#saveMsg2").innerHTML = e;
   }
+
+  stdName.value = "";
+  stdFname.value = "";
+  stdroll.value = "";
+  stdContact.value = "";
+  stdCnic.value = "";
+  stdCourse.value = "";
+  stdImage.value = "";
 }
 
 stdDataSave.addEventListener("click", stdData);
+
+let idCard = document.querySelector("#idCard");
+let searchData = document.querySelector("#searchData");
+let searchBtn = document.querySelector("#searchBtn");
+
+async function getStdData() {
+  const q = query(
+    collection(db, "studentDetails"),
+    where("cnicNumber", "==", searchData.value)
+  );
+  await onSnapshot(q, (querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      idCard.innerHTML = ` <div class="row">
+      <div class="mb-3 col-sm-5 col-md-6">
+          <div class="card" style="width: 28rem;">
+              <img src="${doc.data().image}" class="card-img-top" alt="...">
+              <div class="card-body">
+                  <h5 class="card-title text-center">${doc.data().name}</h5>
+                  <h6 class="card-text text-center">${
+                    doc.data().fatherName
+                  }</h6>
+                  <p class="card-text text-center" text-center>${
+                    doc.data().course
+                  }</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Roll No ${
+                    doc.data().rollNumber
+                  }</li>
+                  <li class="list-group-item">Contact No ${
+                    doc.data().contactNumber
+                  }</li>
+                  <li class="list-group-item">CNIC No ${
+                    doc.data().cnicNumber
+                  }</li>
+              </ul>
+              <div class="card-body">
+                  <button class="btn btn-outline-success p-1">Edit</button>
+                  <button class="btn btn-outline-success p-1">Delete</button>
+              </div>
+          </div>
+  
+      </div>
+  </div>`;
+    });
+  });
+}
+
+searchBtn.addEventListener("click", getStdData);

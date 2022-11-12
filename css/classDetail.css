@@ -3,9 +3,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+body {
+  background-image: url("../images/bgimage.webp");
+}
 section {
   margin: 20px;
 }
-form h2{
-    margin: 0 auto;
+form h2 {
+  margin: 0 auto;
 }
