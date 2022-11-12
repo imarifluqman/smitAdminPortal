@@ -21,6 +21,8 @@
                 <img src="./images/logo.jpg" alt="" width="130" height="64">
             </a>
             <form class="d-flex">
+                <button class="btn btn-outline-success w-100 me-2" type="button" id="classboxShow">Add Class</button>
+                <button class="btn btn-outline-success w-100 me-2" type="button" id="stdboxShow">Add Student</button>
                 <input class="form-control me-2" id="searchData" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success me-2" type="button" id="searchBtn">Search</button>
                 <button class="btn btn-outline-success" type="button" id="logoutBtn">LogOut</button>
@@ -29,81 +31,16 @@
     </nav>
 
     <section id="idCard" class="d-flex justify-content-center">
-       
-    </section>
-
-
-    <section>
-        <form class="row">
-            <div class="mb-3">
-                <h2 class="form-label text-center"> Add Class Details</h2>
-            </div>
-
-            <div class="mb-3 col-sm-5 col-md-6">
-                <label for="classTime" class="form-label">Select Time</label>
-                <select class="form-select" id="classTime" aria-label="Default select example">
-                    <option selected>select Class Time</option>
-                    <option value="morning">Morning</option>
-                    <option value="afterNoon">After Noon</option>
-                    <option value="evening">Evening</option>
-                </select>
-            </div>
-            <div class="mb-3 col-sm-5 col-md-6">
-                <label for="scheduleOfClass" class="form-label">Schedule of class</label>
-                <select class="form-select" id="scheduleOfClass" aria-label="Default select example">
-                    <option selected>Schedule of class</option>
-                    <option value="mwf">Mon Wed Fri</option>
-                    <option value="tts">Tue Thu Sat</option>
-                    <option value="sunday">Sunday</option>
-                </select>
-            </div>
-            <div class="mb-3 col-sm-5 col-md-6">
-                <label for="teacherName" class="form-label">Teacher's Name</label>
-                <select class="form-select" id="teacherName" aria-label="Default select example">
-                    <option selected>select Teacher Name</option>
-                    <option value="haiderAli">Sir Haider Ali</option>
-                    <option value="ghouseAhmed">Sir Ghouse Ahmed</option>
-                    <option value="inzamamMalik">Sir Inzamam Malik</option>
-                </select>
-            </div>
-            <div class="mb-3 col-sm-5 col-md-6">
-                <label for="sectionName" class="form-label">Section Name</label>
-                <select class="form-select" id="sectionName" aria-label="Default select example">
-                    <option selected>select Section</option>
-                    <option value="morning">A (9am to 11am)</option>
-                    <option value="afterNoon">B (12pm to 2pm)</option>
-                    <option value="evening">C (4pm to 6pm)</option>
-                </select>
-            </div>
-            <div class="mb-3 col-sm-5 col-md-6">
-                <label for="courseName" class="form-label">Course Name</label>
-                <select class="form-select" id="courseName" aria-label="Default select example">
-                    <option selected>select Course</option>
-                    <option value="webAndApp">Web and App Development</option>
-                    <option value="graphicDesign">Graphic Design</option>
-                    <option value="cco">CCo</option>
-                </select>
-            </div>
-            <div class="mb-3 col-sm-5 col-md-6">
-                <label for="batch" class="form-label">Batch Number</label>
-                <select class="form-select" id="batch" aria-label="Default select example">
-                    <option selected>select Batch</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                </select>
-            </div>
-            <div class="mt-3 col-sm-12 col-md-12 d-flex justify-content-center">
-                <button type="button" class="btn btn-primary" id="classDataSave">Submit</button>
-            </div>
-            <div class="mt-3 col-sm-12 col-md-12 d-flex justify-content-center" id="saveMsg"></div>
-        </form>
 
     </section>
 
-    <hr />
+
+    <section id="addClassData">
+    </section>
+
     <!-- ============================== detail of students======================= -->
 
-    <section>
+    <!-- <section id="addStdData">
         <form class="row">
             <div class="mb-3">
                 <h2 class="form-label text-center"> Add Student Details</h2>
@@ -170,9 +107,8 @@
             <div class="mt-3 col-sm-12 col-md-12 d-flex justify-content-center" id="saveMsg2"></div>
 
         </form>
-    </section>
+    </section> -->
 
-    <hr />
 
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
