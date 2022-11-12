@@ -1,0 +1,76 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+}
+section {
+  width: 100%;
+  height: 90vh;
+  display: grid;
+  align-content: center;
+}
+.container {
+  width: 350px;
+  margin: 10px auto;
+  /* margin-top: -300px; */
+  border-left: 2px solid #1f40f9;
+  border-right: 2px solid #1f40f9;
+  border-radius: 10px;
+  box-shadow: 3px 3px 15px 2px #418cfd, -3px -3px 15px 2px #418cfd;
+  overflow: hidden;
+}
+
+.container h2 {
+  text-align: center;
+  padding: 10px;
+  color: #1f40f9;
+  width: 100%;
+  border-bottom: 1px solid #1f40f9;
+}
+
+.container form {
+  padding: 0px;
+}
+
+.container form label {
+  display: block;
+  text-transform: capitalize;
+  margin: 12px;
+  color: #1f40f9;
+}
+
+.container form input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  border: none;
+  outline: orangered;
+  border-left: 2px solid #1f40f9;
+  border-right: 2px solid #1f40f9;
+  box-shadow: 1px 1px 3px #1f40f9;
+  border-radius: 5px;
+}
+
+.container input[type="button"] {
+  background: #1f40f9;
+  width: 100%;
+  color: white;
+  outline: none;
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+.container input[type="button"]:hover {
+  background: #298ae1;
+}
+
+@media (min-width: 300px) and (max-width: 576px) {
+  .container {
+    margin-top: -300px;
+  }
+}
