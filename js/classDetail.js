@@ -40,7 +40,7 @@ let stdboxShow = document.querySelector("#stdboxShow");
 let classboxShow = document.querySelector("#classboxShow");
 
 function showClassBox() {
-  addClassData.innerHTML = `  <form class="row">
+  addClassData.innerHTML = `<form class="row">
   <div class="mb-3">
       <h2 class="form-label text-center"> Add Class Details</h2>
   </div>
@@ -186,11 +186,9 @@ let sectionName = document.querySelector("#sectionName");
 let courseName = document.querySelector("#courseName");
 let batch = document.querySelector("#batch");
 
-let dataSave = document.querySelector("#classDataSave");
 let stdDataSave = document.querySelector("#stdDataSave");
 
 async function saveDataClass() {
-  console.log("clicked");
   try {
     const docRef = await addDoc(collection(db, "classDetails"), {
       classTime: classTime.value,
@@ -215,6 +213,7 @@ async function saveDataClass() {
   batch.value = "";
 }
 
+let dataSave = document.querySelector("#addClassData");
 dataSave.addEventListener("click", saveDataClass);
 
 let stdName = document.querySelector("#stdName");
@@ -258,9 +257,8 @@ async function stdData() {
   stdImage.value = "";
 }
 
-stdDataSave.addEventListener("click", stdData);
+dataSave.addEventListener("click", stdData);
 
-// let idCard = document.querySelector("#idCard");
 let searchData = document.querySelector("#searchData");
 let searchBtn = document.querySelector("#searchBtn");
 
@@ -271,7 +269,7 @@ async function getStdData() {
   );
   await onSnapshot(q, (querySnapshot) => {
     querySnapshot.forEach((doc) => {
-      addClassData.innerHTML = ` <div class="row">
+      addClassData.innerHTML = ` <div class="row  d-flex justify-content-center">
       <div class="mb-3 col-sm-5 col-md-6">
           <div class="card" style="width: 28rem;">
               <img src="${doc.data().image}" class="card-img-top" alt="...">
@@ -296,7 +294,9 @@ async function getStdData() {
                   }</li>
               </ul>
               <div class="card-body">
-                  <button class="btn btn-outline-success p-1">Edit</button>
+                  <button class="btn btn-outline-success p-1" onClick="editfun('${
+                    doc.id
+                  }')">Edit</button>
                   <button class="btn btn-outline-success p-1">Delete</button>
               </div>
           </div>
@@ -308,3 +308,9 @@ async function getStdData() {
 }
 
 searchBtn.addEventListener("click", getStdData);
+
+function editfun(arr) {
+  console.log(arr);
+}
+
+window.editfun = editfun;
